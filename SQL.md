@@ -726,17 +726,27 @@
 
   - `alter` : 객체의 구조를 변경
 
+    ```sql
+    alter table dept add (createdate date);
+    ```
+
+    ```sql
+    alter table dept modify (mgr varchar2(10));
+    ```
+
+    
+
   - `drop ` : 객체를 삭제
+
+    ```sql
+    alter table dept drop(cratedate);
+    ```
+
+    
 
   - `rename ` : 객체의 이름을 변경
 
-  - ```sql
-    create table member( id varchar2(20) primary key,
-    pass vacrhar2(20),
-    addr vacrhar2(20),
-    state varchar2(20));
-    ;
-    ```
+    
 
 
 
