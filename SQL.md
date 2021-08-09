@@ -722,35 +722,25 @@
                        mgr carchar2(20));
     ```
 
-    
-
   - `alter` : 객체의 구조를 변경
 
     ```sql
     alter table dept add (createdate date);
     ```
-
+  
     ```sql
     alter table dept modify (mgr varchar2(10));
     ```
-
-    
-
+  
   - `drop ` : 객체를 삭제
 
     ```sql
     alter table dept drop(cratedate);
     ```
 
-    
-
   - `rename ` : 객체의 이름을 변경
-
+  
     
-
-
-
-
 
 ## 2.6 DML
 
@@ -792,4 +782,77 @@
     where 조건;
     ```
 
-    
+
+
+# 2.7 제약조건
+
+``` 
+[추가]
+Alter table 테이블명
+Add constraint 제약조건이름 추가할제약조건
+```
+
+```
+[제거]
+alter table 테이블명
+drop constraint 제약조건명
+```
+
+``` 
+[조회]
+ user_constraints
+```
+
+- `not null` : 컬럼에 데이터가 저장될 때 NULL이 포함되지 못하도록 지정한다
+
+  ​                     컬럼 수준으로 not null제약조건을 정의함
+
+  ``` sql
+  create table test(id varchar2(20) not null,
+                    data1 number);  
+  ```
+
+- `unique` : 중복된 값이 저장될 수 없는 컬럼인 경우 unique제약 조건을 정의하 여 제약한다
+
+  ​               예를 들어 dept테이블의 deptname같은 경우 중복될 수 없다. 이미 테이블이 만들어진 상태에서 제약조건을 추가할 수 있다.
+
+   ``` sql
+   alter table dept add comstraint uk_dname unique(deptname);
+   ```
+
+  
+
+- `prinary key` : 테이블에 저장된 레코드를 식별하기 위한 제약조건으로 not null,  unique의 특성을 함께 갖고 있는 제약조건이다.
+
+   ```sql
+   create table dept (
+                      deptno varchar2(20) primary key
+                      deptname varchar2(20));
+   ```
+
+  
+
+- `foreign key ` : 관계형 데이터베이스는 데이터 관리를 테이블로 하며 성격에 따라 여러 테이블로 데이터를 나누어 관리한다.
+
+  ​                            이때 이미 작성 된 테이블의 기본키를 참조해서 쓰는 경우 foreign key제약 조건을 설정한다. 
+
+  ​                            테이블에 저장된 값을 가져와야 하므로 데이터의 무결성을 위해 적용
+
+  ​                            제약조건을 정의할때 어떤 테이블의 어떤 기본키를 참조하는지 정의 해야 한다.
+
+  ​                            Foreign key제약조건이 설정된 컬럼에는 기본키와 동일한 값이나 null이 저장된다.
+
+    ```sql
+    alter table 테이블 add constraint 제약조건명 foreign key (칼럼)
+                         references테이블명(칼럼)
+    ```
+
+- `check` : 입력값의 범위를 설정
+
+   ```sql
+    alter table 테이블 add constraint 
+    제약조건명 check (칼럼명) (제약범위);
+   ```
+
+  
+
